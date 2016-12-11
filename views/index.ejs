@@ -1,0 +1,20 @@
+<html>
+<head>
+<%- include('partials/header.ejs') %>
+</head>
+<body>
+<%- include('partials/navbar.ejs') %>
+<br/>
+<br/>
+<br/>
+<% if (isHome) { %>
+<%- include('partials/form-autocomplete.ejs') %>
+<% } else if (isLocation) { %>
+<%- include('partials/form-location.ejs') %>
+<% } else if (output != null && output._id != null) { %>
+<%- include('partials/details.ejs') %>
+<% } else { %>
+<%- include('partials/table.ejs') %>
+<% } %>
+</body>
+</html>
