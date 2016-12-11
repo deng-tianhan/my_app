@@ -1,0 +1,33 @@
+<div class="container">
+	<form class="form-autocomplete jumbotron" method="POST">
+		<div class="form-group">
+			<label class="sr-only" for="text">Keyword</label>
+			<input type="text" class="form-control" name="text" placeholder="Enter Keyword">
+		</div>
+		<div class="form-group">
+			<% if (myCoord) { %>
+				<label for="radius">
+				Location: <%= myCoord._id.toUpperCase() %>
+				<font style="color:lightgray;">(coordinates:<%= myCoord.latitude %>,<%= myCoord.longitude %>)</font>
+				</label>
+			<% } else { %>
+				<label class="sr-only" for="radius">Radius</label>
+			<% } %>
+			<input type="number" class="form-control" name="radius" placeholder="Enter Search Radius (Meters)">
+		</div>
+		<div class="form-group">
+			<label for="sort_by">Sort By</label>
+			<select name="sort_by" class="form-control">
+				<option value="best_match">Best Match</option>
+				<option value="rating">Rating</option>
+				<option value="review_count">Reviews</option>
+				<option value="distance">Distance</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label class="sr-only" for="limit">Limit</label>
+			<input type="number" class="form-control" name="limit" placeholder="Enter results to show (max 50)">
+		</div>
+		<button type="submit" class="btn btn-default">Search</button>
+	</form>
+</div>

@@ -1,0 +1,22 @@
+<div class="container">
+	<form class="form-location jumbotron" method="POST">
+		<div class="form-group">
+			<label class="sr-only" for="street">Street</label>
+			<input type="text" class="form-control" name="street" placeholder="Enter Street">
+		</div>
+		<div class="form-group">
+			<label class="sr-only" for="city">City</label>
+			<input type="text" class="form-control" name="city" placeholder="Enter City" required>
+		</div>
+		<div class="form-group">
+			<label class="sr-only" for="state">State</label>
+			<input type="text" class="form-control" name="state" placeholder="Enter State">
+		</div>
+		<div class="form-group">
+			<label class="sr-only" for="country">Country</label>
+			<input type="text" class="form-control" name="country" placeholder="Enter Country" required>
+		</div>
+		<button type="submit" class="btn btn-default">Submit</button>
+		<div style="color:lightgray; float:right;">(via Google Maps Geocoding API)</div>
+	</form>
+</div>

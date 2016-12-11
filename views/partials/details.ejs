@@ -1,0 +1,60 @@
+<div class="container">
+<div class="jumbotron">
+<% var keys = Object.keys(output.schema.paths), url = null; %>
+<table class="table table-hover table-condensed" style="font-size:x-small">
+<% for(var i = 0; i < keys.length; i++) {
+	var key = keys[i], val = output.get(key);
+	if (! val) continue;
+ 
+	if (key == "_id") {
+		key = "yelp id";
+	}
+
+	if (key == "url") {
+		url = val;
+		continue;
+	} else if (key == "image_url") { %>
+		<tr>
+			<th>image</th>
+			<td><img class="img-responsive img-rounded" src="<%= val %>"/></td>
+		</tr>
+	<% } else if (key == "coordinates" || key == "location") {
+		var arr = val.split(";"); %>
+		<tr>
+			<th><%= key %></th>
+			<td>
+		<% for (var j = 0; j < arr.length; j++) {
+			if (j > 0) {%>
+				<br/>
+			<% } %>
+			<%= arr[j].split(":")[1] %>
+		<% } %>
+			</td>
+		</tr>
+	<% } else { %>
+		<tr>
+			<th><%= key %></th>
+			<td><%= val %></td>
+		</tr>
+	<% } %>
+<% } %>
+</table>
+<table class="col-xs-12">
+	<tbody>
+	<tr>
+		<% if (url != null && url.length > 0) { %>
+		<td class="text-left">
+		<a href="<%= url %>"><button type="submit" class="btn btn-default">Go to page on Yelp</button></a>
+		</td>
+		<td class="text-right">
+		<% } else { %>
+		<td class="text-center">
+		<% } %>
+		<a href="/results"><button type="submit" class="btn btn-default">Go back</button></a>
+		</td>
+	</tr>
+	</tbody>
+</table>
+<div class="visible-xs"><br></div>
+</div>
+</div>
