@@ -194,10 +194,13 @@ app.post("/", function (req, res) {
 	var keys = params == null ? [] : Object.keys(params);
 	var text = params == null ? "" : params['text'];
 
+	options.qs = [];
 	for (var i = 0; i < keys.length; i++) {
 		var key = keys[i];
 		if (showDebugLog) console.log(key + ": " + options.qs[key] + " -> "+ params[key]);
-		options.qs[key] = params[key];
+		if (params[key] != null && params[key].length > 0) {
+			options.qs[key] = params[key];
+		}
 	}
 	// max results per request returned by yelp
 	if (options.qs['limit'] != null && options.qs['limit'] > 50) {
@@ -373,6 +376,9 @@ var options = {
 // this function is meant for retrieving data from Yelp API
 // to be used together with options object
 function sendRequest(process, callback) {
+	if (showDebugLog) console.log("sending request to Yelp");
+	if (showDebugLog) console.log(options.qs);
+
 	// Start the request
 	request(options, function (error, response, body) {
 		//Check for error
